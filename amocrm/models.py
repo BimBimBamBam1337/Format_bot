@@ -42,9 +42,9 @@ class Manager:
 
 class Payment:
     date: str = ""
-    amount: str = ""
-    credit: str = ""
-    method: str = ""
+    amount: int = 0
+    credit: int = 0
+    method: int = 0
 
     def __str__(self):
         """Возвращает строковое представление оплаты"""
