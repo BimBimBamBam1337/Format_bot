@@ -1,6 +1,5 @@
 import gspread
 import os
-import time
 from loguru import logger
 
 
@@ -19,21 +18,15 @@ class GoogleSheets:
 
     def insert_row(self, row_data, index: int):
         """Вставляет строку данных на указанный индекс."""
-        start_time = time.time()
         try:
-            filtered_data = [int(data) if data.isdigit() else data for data in
-                             row_data]
+            row_data[5], row_data[11], row_data[12] = int(row_data[11]), int(row_data[11]), int(row_data[12])
             logger.info(f"Вставка строки на позицию {index}: {row_data}")
-            self.worksheet.insert_row(filtered_data, index)
-            print(type(row_data))
+            self.worksheet.insert_row(row_data, index)
             logger.info("Строка успешно вставлена")
         except Exception as e:
             logger.error(f"Ошибка при вставке строки: {e}")
             raise
-        end_time = time.time()
-        a = end_time - start_time
-        print(a)
-
+            
     def get_row_count(self):
         """Возвращает количество строк, включая пустые."""
         try:
